@@ -1,6 +1,0 @@
-# Impeccable working files. Impeccable keeps mocks/, review/, critique/ and
-# questions/ out of git with its own .gitignore files.
-build/
-live/
-sketches/
-hook.cache.json
