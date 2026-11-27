@@ -1,15 +1,3 @@
 /server
 result
 .direnv/
-
-# Impeccable working files. Impeccable already keeps mocks/, review/,
-# critique/ and questions/ out of git with its own .gitignore files.
-.impeccable/build/
-.impeccable/live/
-.impeccable/sketches/
-.impeccable/hook.cache.json
-
-# Provenance sidecars the Impeccable plugin writes next to generated images
-*.png.json
-*.webp.json
-*.jpg.json
