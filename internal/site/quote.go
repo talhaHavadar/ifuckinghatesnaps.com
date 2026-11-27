@@ -10,6 +10,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 const highlightMarker = "**"
@@ -22,6 +23,12 @@ var (
 type quote struct {
 	ID         int
 	Paragraphs []template.HTML
+	// Punchline is the first highlighted part as plain text, or empty when
+	// the quote highlights nothing.
+	Punchline string
+	// Text is the whole quote as plain text on one line, for page
+	// descriptions and link previews.
+	Text string
 }
 
 type collection struct {
@@ -49,11 +56,12 @@ func loadQuotes(fsys fs.FS) (collection, error) {
 		if err != nil {
 			return collection{}, fmt.Errorf("reading %s: %w", name, err)
 		}
-		paragraphs, err := renderQuote(string(raw))
+		text := typographic(string(raw))
+		paragraphs, err := renderQuote(text)
 		if err != nil {
 			return collection{}, fmt.Errorf("%s: %w", name, err)
 		}
-		c.byID[id] = quote{ID: id, Paragraphs: paragraphs}
+		c.byID[id] = quote{ID: id, Paragraphs: paragraphs, Punchline: punchline(text), Text: plainText(text)}
 		c.ids = append(c.ids, id)
 	}
 	if len(c.ids) == 0 {
@@ -114,8 +122,44 @@ func renderParagraph(p string) (template.HTML, error) {
 	return template.HTML(b.String()), nil
 }
 
-func (c collection) latest() quote {
-	return c.byID[c.ids[len(c.ids)-1]]
+// typographic turns straight quotes into curly ones. A mark that follows a
+// letter, a digit or closing punctuation closes (and an apostrophe is a
+// closing single quote); anywhere else it opens.
+func typographic(text string) string {
+	var b strings.Builder
+	prev := ' '
+	for _, r := range text {
+		closing := unicode.IsLetter(prev) || unicode.IsDigit(prev) || strings.ContainsRune(".,!?;:)]}%\u2019\u201d", prev)
+		switch {
+		case r == '\'' && closing:
+			b.WriteRune('\u2019')
+		case r == '\'':
+			b.WriteRune('\u2018')
+		case r == '"' && closing:
+			b.WriteRune('\u201d')
+		case r == '"':
+			b.WriteRune('\u201c')
+		default:
+			b.WriteRune(r)
+		}
+		prev = r
+	}
+	return b.String()
+}
+
+// punchline returns the first highlighted part of a quote that renderQuote
+// accepted, without the markers.
+func punchline(text string) string {
+	parts := strings.SplitN(text, highlightMarker, 3)
+	if len(parts) < 3 {
+		return ""
+	}
+	return strings.Join(strings.Fields(parts[1]), " ")
+}
+
+// plainText returns a quote without highlight markers, on one line.
+func plainText(text string) string {
+	return strings.Join(strings.Fields(strings.ReplaceAll(text, highlightMarker, "")), " ")
 }
 
 func (c collection) previous(id int) int {

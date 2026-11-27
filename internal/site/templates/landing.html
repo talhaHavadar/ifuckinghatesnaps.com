@@ -1,0 +1,347 @@
+{{define "landing.html"}}<!doctype html>
+<html lang="en">
+<head>
+{{- template "meta" .}}
+  <link rel="preload" href="{{static "snap-box.webp"}}" as="image">
+  <style>
+    /* Shared type, palette, frame and footer band are in site.css. */
+    :root {
+      /* The drawn box and mallet have pure black outlines; code-drawn parts
+         of them (the pupils) match those, not the softer page ink. */
+      --plate-ink: #0b0b0b;
+      /* 1px of the 1536x1024 design, scaled to fit the viewport */
+      --px: calc(min(1vw, 1.5svh) / 15.36);
+      --board-px: var(--px);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(48 * var(--px)) 1rem calc(48 * var(--px));
+      text-align: center;
+    }
+
+    h1, .cta { margin: 0; text-box: trim-both cap alphabetic; }
+
+    h1 {
+      font-size: max(calc(140 * var(--px)), 3rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .board {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: calc(1242 * var(--board-px));
+      height: calc(248 * var(--board-px));
+      margin-top: calc(122 * var(--px));
+    }
+
+    .hole {
+      position: relative;
+      width: calc(350 * var(--board-px));
+      height: 100%;
+      --pit-h: calc(108 * var(--board-px));
+    }
+    .hole-mid { width: calc(394 * var(--board-px)); --pit-h: calc(103 * var(--board-px)); }
+
+    .pit {
+      position: absolute;
+      inset: auto 0 0;
+      height: var(--pit-h);
+      border-radius: 50%;
+      /* Depth, as if looking down into it: the far wall inside is lit and
+         falls into darkness toward the near rim, which overhangs it; a ring
+         of turned-up dirt runs round the edge. */
+      background: radial-gradient(ellipse 110% 130% at 50% 100%, #050403 0%, #120e0b 40%, #33281f 72%, #5e4b3c 100%);
+      box-shadow:
+        inset 0 calc(-10 * var(--board-px)) calc(12 * var(--board-px)) rgba(0, 0, 0, 0.6),
+        0 0 0 calc(4 * var(--board-px)) var(--dirt),
+        0 calc(7 * var(--board-px)) calc(10 * var(--board-px)) calc(4 * var(--board-px)) var(--hole-shadow);
+    }
+    /* On a dark ground a lit far wall reads as a mound, so in dark the hole
+       is darker than the ground everywhere: darkest under the far rim that
+       overhangs it, lifting only a little toward the near edge, whose lip
+       catches a faint light. No shadow on the ground, which made it look
+       raised. */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .pit {
+        background: radial-gradient(ellipse 120% 140% at 50% 0%, #000 0%, #070605 50%, #15110e 100%);
+        box-shadow:
+          inset 0 calc(12 * var(--board-px)) calc(14 * var(--board-px)) rgba(0, 0, 0, 0.75),
+          0 calc(2 * var(--board-px)) 0 0 rgba(255, 238, 214, 0.07);
+      }
+    }
+    :root[data-theme="dark"] .pit {
+      background: radial-gradient(ellipse 120% 140% at 50% 0%, #000 0%, #070605 50%, #15110e 100%);
+      box-shadow:
+        inset 0 calc(12 * var(--board-px)) calc(14 * var(--board-px)) rgba(0, 0, 0, 0.75),
+        0 calc(2 * var(--board-px)) 0 0 rgba(255, 238, 214, 0.07);
+    }
+
+    /* Everything above the pit's front rim. The box sinks below it. */
+    .window {
+      position: absolute;
+      inset: calc(-140 * var(--board-px)) 0 0;
+      overflow: hidden;
+      border-radius: 0 0 50% 50% / 0 0 calc(var(--pit-h) / 2) calc(var(--pit-h) / 2);
+      pointer-events: none;
+    }
+
+    .snap {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: calc(355 * var(--board-px));
+      translate: -50% 0;
+      transform-origin: 50% 100%;
+      display: block;
+      pointer-events: auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .snap picture { display: contents; }
+    .snap img { display: block; width: 100%; height: auto; }
+    /* The plate's transparent bottom margin hangs below the rim, outside the link. */
+    .snap .box { margin-bottom: calc(-21 * var(--board-px)); }
+    /* Ducking: a little hop, then it slides back down into the hole. */
+    /* .snap.down.ouch: a snap that is going down always goes down, even if a
+       flinch was still playing. */
+    .snap.down,
+    .snap.down.ouch {
+      translate: -50% 110%;
+      pointer-events: none;
+      animation: duck 320ms both;
+    }
+    .snap.down.rest { animation: none; }
+    @keyframes duck {
+      0% { translate: -50% 0; scale: 1 1; animation-timing-function: cubic-bezier(0.3, 0.7, 0.6, 1); }
+      25% { translate: -50% -5%; scale: 0.96 1.05; animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4); }
+      100% { translate: -50% 110%; scale: 1.02 0.98; }
+    }
+    /* Popping up: overshoot out of the hole stretched, land squashed, settle,
+       then wobble smugly while it waits to be hit. The script adds .pop. */
+    .snap.pop {
+      animation:
+        pop 560ms linear both,
+        taunt 1.3s ease-in-out 560ms infinite;
+    }
+    @keyframes pop {
+      0% { translate: -50% 110%; scale: 0.88 1.18; animation-timing-function: cubic-bezier(0.15, 0.7, 0.35, 1); }
+      38% { translate: -50% -17%; scale: 0.92 1.1; animation-timing-function: cubic-bezier(0.55, 0, 0.75, 0.35); }
+      58% { translate: -50% 0; scale: 1.14 0.84; animation-timing-function: cubic-bezier(0.25, 0.6, 0.45, 1); }
+      74% { translate: -50% -6%; scale: 0.96 1.05; animation-timing-function: cubic-bezier(0.55, 0, 0.75, 0.35); }
+      87% { translate: -50% 0; scale: 1.04 0.96; }
+      100% { translate: -50% 0; scale: 1 1; }
+    }
+    /* A hit that does not kill it: it flinches, squashed down, then springs
+       back. The script swaps in the battered plate at the same moment. */
+    .snap.ouch { animation: ouch 260ms both, taunt 1.3s ease-in-out 260ms infinite; }
+    @keyframes ouch {
+      0% { translate: -50% 0; scale: 1.18 0.78; animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1); }
+      55% { translate: -50% -4%; scale: 0.94 1.07; }
+      100% { translate: -50% 0; scale: 1 1; }
+    }
+    /* Worn out: it stops running and its taunt slows to a sulk. */
+    .board.tired .snap.pop { animation-duration: 560ms, 2.6s; }
+    .board.tired .snap.ouch { animation-duration: 260ms, 2.6s; }
+    @keyframes taunt {
+      0%, 100% { rotate: 0deg; }
+      25% { rotate: -3deg; }
+      75% { rotate: 3deg; }
+    }
+    .snap:focus-visible { outline: none; }
+    .hole:has(.snap:focus-visible) .pit { outline: 3px solid var(--ink); outline-offset: 6px; }
+
+    /* The plate's eye whites are empty; the pupils are drawn here so they can
+       follow the mallet. Each eye clips its pupil to the white under the lid.
+       --ex and --ey run from -1 to 1; the default is the smug sideways glance. */
+    .eyes {
+      position: absolute;
+      inset: 0 0 auto;
+      aspect-ratio: 800 / 640;
+      pointer-events: none;
+    }
+    .eye {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    }
+    .eye-l { left: 14.69%; top: 48.84%; width: 15.26%; height: 7.13%; }
+    .eye-r { left: 39.66%; top: 50.09%; width: 16.12%; height: 7.31%; }
+    .eye i {
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--plate-ink);
+      translate: calc(-50% + var(--ex, 0.6) * 85%) calc(-50% + var(--ey, 0.3) * 14%);
+      transition: translate 90ms ease-out;
+    }
+    .eye-l i { width: 35.5%; }
+    .eye-r i { width: 33.6%; }
+
+    .snap.whacked { transition: none; animation: none; }
+    .snap.whacked .eyes { display: none; }
+    .snap.whacked .box { display: none; }
+    /* The flattened box sits over the rim, outside the clipped window. */
+    .flat {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: calc(-10 * var(--board-px));
+      width: calc(480 * var(--board-px));
+      height: auto;
+      translate: -50% 0;
+      transform-origin: 50% 90%;
+      pointer-events: none;
+    }
+    .hole:has(.snap.whacked) .flat {
+      display: block;
+      animation: squash 260ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+    @keyframes squash {
+      from { transform: scale(0.8, 2.2); }
+      60% { transform: scale(1.08, 0.85); }
+      to { transform: none; }
+    }
+
+    .cta {
+      margin-top: calc(104 * var(--px));
+      font-size: max(calc(99 * var(--px)), 2.25rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* The footer band scales with the comp unit here. */
+    .report-band { font-size: max(calc(23 * var(--px)), 0.9375rem); }
+
+    /* Phones and portrait tablets: the board fills the width and the type
+       scales with it; the caption and link stay close under the board. */
+    @media (max-width: 40rem), (orientation: portrait) and (max-width: 64rem) {
+      /* The holes form a triangle, two above and the middle one below, so
+         the board and the snap can be about twice as big as in a row. Its
+         scale is capped by the height too, so the page never scrolls. */
+      :root { --board-px: min(calc((100vw - 2rem) / 820), calc((100svh - 25rem) / 640)); }
+      .board {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: calc(80 * var(--board-px));
+        width: calc(820 * var(--board-px));
+        height: auto;
+      }
+      .hole { height: calc(248 * var(--board-px)); }
+      .hole-mid { order: 1; margin-inline: auto; }
+      main { padding-block: 2rem; }
+      h1 { font-size: clamp(3.25rem, 11vw, 7rem); }
+      .board { margin-top: clamp(3rem, 12vw, 7rem); }
+      .cta { margin-top: clamp(2.5rem, 9vw, 5rem); font-size: clamp(2.5rem, 8vw, 4.5rem); }
+      .report-band { font-size: clamp(0.875rem, 2.4vw, 1.0625rem); }
+    }
+
+    /* With a mouse or trackpad the pointer is a mallet. Without the script it
+       is a plain mallet cursor. With it, the cursor is hidden and a drawn
+       mallet follows the pointer, held at the end of its handle: a press
+       brings the head down onto the pointer with an overshoot, and it lifts
+       back up on release. The link keeps the hand. */
+    .mallet { display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      html {
+        cursor: url("{{static "mallet-128.png"}}") 28 59, pointer;
+        cursor: image-set(url("{{static "mallet-128.png"}}") 1x, url("{{static "mallet-256.png"}}") 2x) 28 59, pointer;
+      }
+      .snap { cursor: inherit; }
+      html.js-mallet, html.js-mallet .snap { cursor: none; }
+      .report a, html.js-mallet .report a { cursor: pointer; }
+      .report-band, html.js-mallet .report-band { cursor: auto; }
+      .theme, html.js-mallet .theme { cursor: pointer; }
+      html.js-mallet .mallet {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        width: 180px;
+        height: auto;
+        pointer-events: none;
+        /* The pivot is the end of the handle; at -52deg the striking face
+           sits exactly on the pointer. */
+        transform-origin: 88.3% 93.75%;
+        translate: calc(var(--mx, -400px) - 11px) calc(var(--my, -400px) - 218px);
+        rotate: -30deg;
+        transition: rotate 240ms cubic-bezier(0.2, 1.5, 0.4, 1), opacity 120ms;
+      }
+      html.js-mallet.swing .mallet {
+        rotate: -52deg;
+        animation: strike 170ms both;
+        transition: opacity 120ms;
+      }
+      html.js-mallet.away .mallet,
+      html.js-mallet:has(.report:hover, .theme:hover) .mallet,
+      html.js-mallet.near-ui .mallet { opacity: 0; }
+      /* Near the theme picker the mallet is put away and the pointer is the
+         normal one, so the drawn mallet never covers the button. */
+      html.js-mallet.near-ui, html.js-mallet.near-ui .snap { cursor: auto; }
+    }
+    @keyframes strike {
+      0% { rotate: -30deg; animation-timing-function: cubic-bezier(0.6, 0, 1, 0.6); }
+      42% { rotate: -58deg; animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1); }
+      70% { rotate: -49deg; }
+      100% { rotate: -52deg; }
+    }
+
+    /* A hit jolts the board. */
+    .board.thud { animation: thud 200ms ease-out; }
+    @keyframes thud {
+      0% { translate: 0 0; }
+      25% { translate: 0 6px; }
+      55% { translate: 0 -2px; }
+      100% { translate: 0 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .snap, .snap.down { transition: none; }
+      .snap.pop, .snap.down, .snap.ouch { animation: none; }
+      .board.thud, html.js-mallet.swing .mallet { animation: none; }
+      html.js-mallet .mallet { transition: none; }
+      .eye i { transition: none; }
+      .hole:has(.snap.whacked) .flat { animation: none; }
+    }
+  </style>
+</head>
+<body>
+{{- template "theme-toggle"}}
+  <main>
+    <h1>I fucking hate snaps.</h1>
+    <div class="board" id="board" data-damage="{{static "snap-box-dmg1.webp"}} {{static "snap-box-dmg2.webp"}}">
+{{- range $i, $up := .Holes}}
+      <div class="hole{{if eq $i 1}} hole-mid{{end}}">
+        <div class="pit"></div>
+        <div class="window">
+          <a class="snap{{if not $up}} down rest{{end}}" href="/random" aria-label="Whack a snap: open a random opinion"{{if not $up}} tabindex="-1" aria-hidden="true"{{end}}>
+            <picture>
+              <source srcset="{{static "snap-box.webp"}}" type="image/webp">
+              <img class="box" src="{{static "snap-box.png"}}" alt="" width="800" height="640">
+            </picture>
+            <span class="eyes" aria-hidden="true"><span class="eye eye-l"><i></i></span><span class="eye eye-r"><i></i></span></span>
+          </a>
+        </div>
+        <img class="flat" src="{{static "snap-box-whacked.webp"}}" alt="" width="1000" height="400">
+      </div>
+{{- end}}
+    </div>
+    <p class="cta">Whack a snap.</p>
+    <p class="sr-only" role="status" id="whack-status"></p>
+  </main>
+  <footer class="report report-band">Real opinions from real people about Ubuntu snaps. <a href="{{.SupportURL}}">Add your own rant</a>, or <a href="{{.SupportURL}}">buy me a coffee</a> and help me survive the next auto-refresh.</footer>
+  <img class="mallet" src="{{static "mallet.webp"}}" alt="" width="360" height="360" aria-hidden="true">
+  <script src="{{static "whack.js"}}" defer></script>
+</body>
+</html>
+{{end}}

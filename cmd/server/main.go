@@ -18,16 +18,22 @@ import (
 
 func main() {
 	addr := flag.String("addr", ":8080", "address to listen on")
+	dev := flag.String("dev", "", "serve templates and static files from this directory (internal/site) and re-read them on every request, for development")
 	flag.Parse()
 
-	if err := run(*addr); err != nil {
+	var opts []site.Option
+	if *dev != "" {
+		opts = append(opts, site.FromDisk(*dev))
+		slog.Info("serving templates and static files from disk", "dir", *dev)
+	}
+	if err := run(*addr, opts); err != nil {
 		slog.Error("server stopped", "err", err)
 		os.Exit(1)
 	}
 }
 
-func run(addr string) error {
-	handler, err := site.New(quotes.FS)
+func run(addr string, opts []site.Option) error {
+	handler, err := site.New(quotes.FS, opts...)
 	if err != nil {
 		return err
 	}

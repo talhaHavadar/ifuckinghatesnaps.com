@@ -4,9 +4,9 @@ image := "localhost/ifuckinghatesnaps:latest"
 default:
     @just --list
 
-# Run the server from source on http://localhost:8080
+# Run the server from source on http://localhost:8080; template and static file edits show on reload
 dev:
-    go run ./cmd/server
+    go run ./cmd/server -dev internal/site
 
 # Run the functional tests with the dev shell's Go
 test:

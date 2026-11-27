@@ -1,0 +1,285 @@
+/* Shared by every page: the type, the palette, the page frame and the night
+   footer band. The landing page adds the game on top; the quote and 404
+   pages add the reading layout below. See DESIGN.md. */
+
+@font-face {
+  font-family: "Figtree";
+  font-weight: 800;
+  font-display: swap;
+  src: url("figtree-latin-800-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-weight: 400;
+  font-display: swap;
+  src: url("figtree-latin-400-normal.woff2") format("woff2");
+}
+
+:root {
+  --ground: #fdf7ec;
+  --ink: #2e2925;
+  --ink-soft: #4a433d;
+  --ink-muted: #6b625b;
+  --red: #d8433a;
+  --night: #222a3a;
+  --night-ink: #d9d3c8;
+  /* The holes on the landing page: the ring of dirt round each rim and the
+     shadow it throws on the ground. */
+  --dirt: #e9dac1;
+  --hole-shadow: rgba(90, 60, 30, 0.16);
+  color-scheme: light;
+}
+
+/* Dark: the same world with the lights down. Soft warm charcoal paper (not
+   near-black), warm light ink a step below white, a quiet neutral band, a
+   lighter red so a hover underline still shows, and the drawn plates dimmed
+   a touch so they sit in the scene instead of glowing on it. The holes get
+   their own dark shading on the landing page. It follows the
+   system setting unless the visitor picked a theme (data-theme on <html>,
+   set by the script in the head from what they chose). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #24211e;
+    --ink: #e2dacd;
+    --ink-soft: #c4bcaf;
+    --ink-muted: #9d9488;
+    --red: #e07a6f;
+    --night: #1b1c20;
+    --night-ink: #c6c0b6;
+    --plate-dim: brightness(0.88) saturate(0.9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #24211e;
+  --ink: #e2dacd;
+  --ink-soft: #c4bcaf;
+  --ink-muted: #9d9488;
+  --red: #e07a6f;
+  --night: #1b1c20;
+  --night-ink: #c6c0b6;
+  --plate-dim: brightness(0.88) saturate(0.9);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--ground); color: var(--ink); }
+/* Every page is a column: the page's own content fills what the footer
+   band leaves, so short pages never scroll. */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  margin: 0;
+  font-family: "Figtree", "Arial Black", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--ink); color: var(--ground); }
+
+/* Visually hidden, still read by screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The closing sentence as a full-width night band on the bottom edge. */
+.report { font-weight: 400; }
+.report-band {
+  padding: 1.15em clamp(1rem, 4vw, 3.5rem) 1.25em;
+  background: var(--night);
+  color: var(--night-ink);
+  font-size: clamp(0.875rem, 1.25vw, 1.0625rem);
+  line-height: 1.5;
+  text-align: left;
+  text-wrap: pretty;
+  cursor: auto;
+}
+/* Links inside the sentence keep a hairline underline so they read as links;
+   the red comes only on hover. */
+.report a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+.report-band a:hover { text-decoration-color: var(--red); text-decoration-thickness: 1.5px; }
+.report-band a:focus-visible { outline: 3px solid var(--night-ink); outline-offset: 4px; border-radius: 2px; }
+
+/* The theme picker: a small round button in the top-right corner of every
+   page. It cycles system, light, dark; the icon shows the current choice.
+   Without the script it stays hidden and the page follows the system. */
+/* Drawn plates (the box, the mallet) are dimmed a touch in dark. */
+img { filter: var(--plate-dim, none); }
+
+.theme {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.theme[hidden] { display: none; }
+.theme svg { width: 1.375rem; height: 1.375rem; }
+.theme .icon { display: none; }
+.theme[data-choice="system"] .icon-system,
+.theme[data-choice="light"] .icon-light,
+.theme[data-choice="dark"] .icon-dark { display: block; }
+.theme:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.theme:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* Quote and 404 pages ------------------------------------------------- */
+
+.masthead {
+  padding: 1.75rem 1rem 0;
+  text-align: center;
+}
+.masthead a {
+  color: var(--ink);
+  font-weight: 800;
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+  text-decoration: none;
+}
+.masthead a:hover {
+  text-decoration-line: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+.masthead a:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
+
+.opinion {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6svh, 4.5rem) 1rem;
+  text-align: center;
+}
+
+/* The punchline, pulled out the way people would quote it. */
+.pull {
+  max-width: 13em;
+  margin: 0;
+  font-size: clamp(3.125rem, 7.2vw + 1rem, 6.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.pull-quoted::before { content: "\201C"; }
+.pull-quoted::after { content: "\201D"; }
+
+/* The whole complaint, at reading size, for context. */
+.opinion blockquote {
+  max-width: 34em;
+  margin: clamp(1.5rem, 4.5svh, 2.75rem) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.125rem, 1.8vw, 1.625rem);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+.opinion blockquote p { margin: 0; }
+.opinion blockquote p + p { margin-top: 0.6em; }
+/* A quote with no punchline is shown large on its own. */
+.opinion blockquote.solo {
+  max-width: 22em;
+  margin-top: 0;
+  color: var(--ink);
+  font-size: clamp(1.75rem, 3.8vw, 3rem);
+  line-height: 1.3;
+}
+/* The highlight is carried by weight and an underline, never colour alone. */
+mark {
+  background: none;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
+}
+
+.lede {
+  margin: 1rem 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+}
+
+.meta {
+  margin: 1.1rem 0 0;
+  color: var(--ink-muted);
+  font-size: 1rem;
+}
+.permalink { user-select: all; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-top: clamp(1.5rem, 4.5svh, 2.75rem);
+  font-size: 1.1875rem;
+}
+/* Standalone links beside the button: no underline until hover, then a thin
+   red one. */
+.actions a:not(.pill) {
+  color: var(--ink);
+  text-decoration: none;
+}
+.actions a:not(.pill):hover {
+  text-decoration-line: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+.actions a:not(.pill):focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
+
+/* The ink pill: the share button on a quote page, and the one way on from
+   the 404, where a lone unadorned link would read as plain text. */
+.share,
+.pill {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.85em 1.5em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ground);
+  font: 800 1.1875rem/1 "Figtree", sans-serif;
+  cursor: pointer;
+}
+.share:hover,
+.pill:hover { background: var(--ink-soft); }
+.share:focus-visible,
+.pill:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* On a phone the button gets a line of its own and the two links pair up
+   below it, instead of whatever the wrap happens to do. */
+@media (max-width: 40rem) {
+  .actions {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 1.1rem 1.75rem;
+  }
+  .actions .share { grid-column: 1 / -1; justify-self: center; }
+}
