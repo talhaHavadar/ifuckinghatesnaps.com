@@ -43,6 +43,11 @@ image:
 run: image
     podman run --rm --read-only --cap-drop=all -p 127.0.0.1:8080:8080 {{image}}
 
+# Push the image built by `just image` to REPO as latest and sha-<short commit>. Log in to the registry first.
+publish repo:
+    podman push {{image}} {{repo}}:latest
+    podman push {{image}} {{repo}}:sha-$(git rev-parse --short=7 HEAD)
+
 # Build the image and check it over HTTP
 system-test: image
     tests/system/smoke.sh {{image}}

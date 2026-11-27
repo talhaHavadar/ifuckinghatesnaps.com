@@ -28,3 +28,25 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref || 'main' }}
         run: nix develop -c just ci "origin/$BASE_REF"
+  publish:
+    name: Publish image to GHCR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - name: Install podman
+        run: command -v podman || (sudo apt-get update && sudo apt-get install -y podman)
+      - name: Build and smoke-test the image
+        run: nix develop -c just system-test
+      - name: Log in to GHCR
+        env:
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "$REGISTRY_PASSWORD" | podman login ghcr.io -u "$REGISTRY_USER" --password-stdin
+      - name: Push latest and sha tags
+        run: nix develop -c just publish "ghcr.io/${GITHUB_REPOSITORY,,}"
