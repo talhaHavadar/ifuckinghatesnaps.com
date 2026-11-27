@@ -36,7 +36,8 @@ check() {
 status() { curl --silent --output /dev/null --write-out '%{http_code}' "$base$1"; }
 
 check "healthz answers 200" test "$(status /healthz)" = 200
-check "home page shows a quote" sh -c "curl --silent --fail '$base/' | grep -q '<blockquote'"
+check "home page is the whack-a-snap game" sh -c "curl --silent --fail '$base/' | grep -q 'Whack a snap.'"
+check "game script is served" test "$(status /static/whack.js)" = 200
 check "quote 1 is served" test "$(status /1/)" = 200
 check "unknown quote is 404" test "$(status /999999/)" = 404
 check "random redirects" test "$(status /random)" = 302

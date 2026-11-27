@@ -1,22 +1,52 @@
+{{define "meta"}}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <title>{{.Title}}</title>
+  <meta name="description" content="{{.Description}}">
+{{- with .Prev}}
+  <link rel="prev" href="{{.}}">
+{{- end}}
+{{- with .URL}}
+  <link rel="canonical" href="{{.}}">
+  <meta property="og:url" content="{{.}}">
+{{- end}}
+  <meta property="og:site_name" content="I fucking hate snaps.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{.Title}}">
+  <meta property="og:description" content="{{.Description}}">
+  <meta property="og:image" content="{{abs (static "og.jpg")}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="I fucking hate snaps. A smug cardboard box marked SNAP pokes out of a hole. Whack a snap.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="{{static "favicon.png"}}">
+  <link rel="preload" href="{{static "figtree-latin-800-normal.woff2"}}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{static "site.css"}}">
+  <script src="{{static "theme.js"}}" defer></script>
+{{- end}}
+
+{{define "theme-toggle"}}
+  <button class="theme" type="button" data-choice="system" aria-label="Colour theme: follows your system. Change it." hidden>
+    <svg class="icon icon-system" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>
+    <svg class="icon icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    <svg class="icon icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+{{- end}}
+
 {{define "head"}}<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>I fucking hate snaps.</title>
-  <meta name="description" content="Real opinions from real people about Ubuntu snaps.">
+{{- template "meta" .}}
 </head>
 <body>
-  <header><h1><a href="/">I fucking hate snaps.</a></h1></header>
-  <main>
+{{- template "theme-toggle"}}
+  <header class="masthead"><a href="/">I fucking hate snaps.</a></header>
 {{end}}
 
 {{define "foot"}}
-  </main>
-  <footer>
-    <p>Real opinions from real people about Ubuntu snaps.</p>
-    <p><a href="{{.SupportURL}}">Submit your opinion</a> or <a href="{{.SupportURL}}">buy me a coffee</a>.</p>
-  </footer>
+  <footer class="report report-band">Real opinions from real people about Ubuntu snaps. <a href="{{.SupportURL}}">Add your own rant</a>, or <a href="{{.SupportURL}}">buy me a coffee</a> and help me survive the next auto-refresh.</footer>
 </body>
 </html>
 {{end}}

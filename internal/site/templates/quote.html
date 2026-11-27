@@ -1,11 +1,22 @@
 {{define "quote.html"}}{{template "head" .}}
-    <blockquote id="quote-{{.Quote.ID}}">
+  <main class="opinion">
+{{- if .Quote.Punchline}}
+    <h1 class="pull pull-quoted">{{.Quote.Punchline}}</h1>
+{{- else}}
+    <h1 class="sr-only">Opinion No. {{.Quote.ID}}</h1>
+{{- end}}
+    <blockquote id="quote-{{.Quote.ID}}"{{if not .Quote.Punchline}} class="solo"{{end}}>
 {{- range .Quote.Paragraphs}}
       <p>{{.}}</p>
 {{- end}}
     </blockquote>
-    <nav>
-      <a href="/{{.PreviousID}}/" rel="prev">Another opinion</a>
-      <a href="/random">Random opinion</a>
-    </nav>
+    <p class="meta">Opinion No. {{.Quote.ID}} · <span class="permalink">{{.Link}}</span></p>
+    <div class="actions">
+      <button class="share" type="button" data-url="{{.URL}}" data-title="{{.Title}}" hidden>Copy link</button>
+      <a href="{{.SupportURL}}">Add your own rant</a>
+      <a href="/random">Another opinion</a>
+    </div>
+    <p class="sr-only" role="status" id="share-status"></p>
+  </main>
+  <script src="{{static "share.js"}}" defer></script>
 {{template "foot" .}}{{end}}

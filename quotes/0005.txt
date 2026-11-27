@@ -1,3 +1,2 @@
 Tried to open a file from /mnt in a snapped app. Permission denied. Tried /tmp.
 Nothing there. **Your sandbox is a prison and I'm the inmate.**
-
