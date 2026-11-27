@@ -8,3 +8,8 @@ result
 .impeccable/live/
 .impeccable/sketches/
 .impeccable/hook.cache.json
+
+# Provenance sidecars the Impeccable plugin writes next to generated images
+*.png.json
+*.webp.json
+*.jpg.json
