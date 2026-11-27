@@ -1,0 +1,30 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  ci:
+    name: Lint, test and build image
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Full history so check-tests can see the PR's commits and the base branch.
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v31
+      - name: Install podman
+        run: command -v podman || (sudo apt-get update && sudo apt-get install -y podman)
+      - name: just ci
+        env:
+          BASE_REF: ${{ github.base_ref || 'main' }}
+        run: nix develop -c just ci "origin/$BASE_REF"

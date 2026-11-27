@@ -1,0 +1,11 @@
+{{define "quote.html"}}{{template "head" .}}
+    <blockquote id="quote-{{.Quote.ID}}">
+{{- range .Quote.Paragraphs}}
+      <p>{{.}}</p>
+{{- end}}
+    </blockquote>
+    <nav>
+      <a href="/{{.PreviousID}}/" rel="prev">Another opinion</a>
+      <a href="/random">Random opinion</a>
+    </nav>
+{{template "foot" .}}{{end}}

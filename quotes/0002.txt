@@ -1,0 +1,3 @@
+Run lsblk on a fresh Ubuntu install and count the loop devices.
+
+**I dare you.**

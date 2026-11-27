@@ -1,0 +1,77 @@
+[[repos]]
+repo = "builtin"
+hooks = [
+  { id = "trailing-whitespace" },
+  { id = "end-of-file-fixer" },
+  { id = "mixed-line-ending" },
+  { id = "check-merge-conflict" },
+  { id = "check-added-large-files" },
+  { id = "check-yaml" },
+  { id = "check-json" },
+  { id = "detect-private-key" },
+]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "golangci-lint"
+name = "golangci-lint (lint and gofmt)"
+language = "system"
+entry = "golangci-lint run ./..."
+files = '\.go$|^\.golangci\.yml$'
+pass_filenames = false
+
+[[repos.hooks]]
+id = "go-mod-tidy"
+name = "go.mod is tidy"
+language = "system"
+entry = "go mod tidy -diff"
+files = '\.go$|^go\.(mod|sum)$'
+pass_filenames = false
+
+[[repos.hooks]]
+id = "tests-live-in-tests-dir"
+name = "tests live in tests/"
+language = "fail"
+entry = "Tests go in tests/ and use the public API. See .claude/rules/testing.md."
+files = '_test\.go$'
+exclude = '^tests/'
+
+[[repos.hooks]]
+id = "shellcheck"
+name = "shellcheck"
+language = "system"
+entry = "shellcheck"
+types = ["shell"]
+
+[[repos.hooks]]
+id = "hadolint"
+name = "hadolint"
+language = "system"
+entry = "hadolint"
+files = '(^|/)Containerfile$'
+
+[[repos.hooks]]
+id = "actionlint"
+name = "actionlint"
+language = "system"
+entry = "actionlint"
+files = '^\.github/workflows/.*\.ya?ml$'
+
+[[repos.hooks]]
+id = "tests-accompany-changes"
+name = "code changes come with tests"
+language = "system"
+entry = "lint/scripts/tests-accompany-changes.sh"
+stages = ["manual"]
+always_run = true
+pass_filenames = false
+
+[[repos.hooks]]
+id = "tests-accompany-changes-test"
+name = "tests-accompany-changes self-test"
+language = "system"
+entry = "lint/scripts/tests-accompany-changes-test.sh"
+files = '^lint/scripts/tests-accompany-changes'
+pass_filenames = false
