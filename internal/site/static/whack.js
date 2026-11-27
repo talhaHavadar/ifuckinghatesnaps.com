@@ -194,14 +194,15 @@
   };
 
   // A hit. The first two batter it; the third flattens it and opens a random
-  // opinion. A snap that is up flinches and, under the mallet, runs off at
-  // once; one that is already sliding down takes the damage and keeps going.
+  // opinion. A snap that is up flinches and, hit by the mallet or a tap, runs
+  // off at once; hit from the keyboard, it stays put so the next Enter lands
+  // too. One that is already sliding down takes the damage and keeps going.
   const status = document.getElementById("whack-status");
   const say = (text) => {
     if (status) status.textContent = text;
   };
 
-  const whack = (snap, byMouse) => {
+  const whack = (snap, runs) => {
     if (hit) return;
     hits++;
     thud();
@@ -230,7 +231,7 @@
     snap.classList.remove("pop", "ouch");
     void snap.offsetWidth;
     snap.classList.add("ouch");
-    if (byMouse && !paused && !tired()) {
+    if (runs && !paused && !tired()) {
       clearTimeout(timer);
       dodging = true;
       timer = setTimeout(hop, still.matches ? 150 : 260);
@@ -262,7 +263,8 @@
       if (e.pointerType === "mouse" && snap === snaps[up]) dodge();
     });
     // Keyboard and touch whack on click; the mouse whacks on press, below,
-    // so the click that follows a mouse press is not a second hit.
+    // so the click that follows a mouse press is not a second hit. A click
+    // from the keyboard has a detail of 0; a tap counts its taps from 1.
     snap.addEventListener("click", (e) => {
       if (snap.classList.contains("down") || hit || performance.now() - swungAt < 1000) {
         e.preventDefault();
@@ -270,10 +272,12 @@
       }
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
       e.preventDefault();
-      whack(snap, false);
+      whack(snap, e.detail > 0);
     });
     // A keyboard user who is about to whack it should not have it run away.
+    // A tap can focus the link too, but that is not a keyboard user.
     snap.addEventListener("focus", () => {
+      if (!snap.matches(":focus-visible")) return;
       paused = true;
       cancel();
     });
