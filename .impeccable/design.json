@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T20:02:44.608987+00:00",
+  "title": "Design System: I fucking hate snaps.",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "oklch(97.8% 0.016 82.8)",
+        "tonalRamp": [
+          "#0e0b05",
+          "#28231b",
+          "#443f36",
+          "#625d54",
+          "#827d73",
+          "#a39e94",
+          "#c9c3b9",
+          "#f4eee3"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "oklch(28.5% 0.032 263.9)",
+        "tonalRamp": [
+          "#090b10",
+          "#1f242e",
+          "#38404f",
+          "#545e70",
+          "#747d91",
+          "#959fb2",
+          "#bdc4d2",
+          "#ebeff6"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "oklch(86.9% 0.016 82.8)",
+        "tonalRamp": [
+          "#0f0b04",
+          "#28231b",
+          "#443f36",
+          "#625d53",
+          "#827d73",
+          "#a39e93",
+          "#c9c3b8",
+          "#f4eee2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Charcoal",
+        "canonical": "oklch(28.5% 0.010 61.1)",
+        "tonalRamp": [
+          "#0e0a07",
+          "#28231f",
+          "#443f3a",
+          "#625c58",
+          "#827c77",
+          "#a39d98",
+          "#c9c3bd",
+          "#f4ede8"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "oklch(38.8% 0.014 63.0)",
+        "tonalRamp": [
+          "#0f0a06",
+          "#29231d",
+          "#453e38",
+          "#635c56",
+          "#837c75",
+          "#a59d96",
+          "#cbc2bb",
+          "#f5ede5"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(50.2% 0.016 60.3)",
+        "tonalRamp": [
+          "#100a05",
+          "#2a221c",
+          "#463e37",
+          "#655c55",
+          "#857b74",
+          "#a69c95",
+          "#ccc2ba",
+          "#f7ece4"
+        ]
+      },
+      "plate-ink": {
+        "role": "neutral",
+        "displayName": "Plate Ink",
+        "canonical": "oklch(15.0% 0 0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "red": {
+        "role": "primary",
+        "displayName": "Underline Red",
+        "canonical": "oklch(59.6% 0.187 27.7)",
+        "tonalRamp": [
+          "#200000",
+          "#4e0000",
+          "#810000",
+          "#af1214",
+          "#d64138",
+          "#f96b5e",
+          "#ffa497",
+          "#ffded6"
+        ]
+      },
+      "hole-deep": {
+        "role": "tertiary",
+        "displayName": "Hole Deep",
+        "canonical": "oklch(10.8% 0.005 71.3)",
+        "tonalRamp": [
+          "#0d0b09",
+          "#262421",
+          "#413f3d",
+          "#5f5d5a",
+          "#7f7d7a",
+          "#a09e9b",
+          "#c6c3c0",
+          "#f1eeeb"
+        ]
+      },
+      "hole-dark": {
+        "role": "tertiary",
+        "displayName": "Hole Dark",
+        "canonical": "oklch(16.8% 0.009 59.0)",
+        "tonalRamp": [
+          "#0e0a08",
+          "#282320",
+          "#443f3b",
+          "#625c59",
+          "#827c78",
+          "#a39d99",
+          "#c9c3be",
+          "#f3ede9"
+        ]
+      },
+      "hole-wall": {
+        "role": "tertiary",
+        "displayName": "Hole Wall",
+        "canonical": "oklch(28.7% 0.023 61.0)",
+        "tonalRamp": [
+          "#0e0a08",
+          "#29231d",
+          "#483e35",
+          "#685b51",
+          "#887a70",
+          "#a99c91",
+          "#ccc2ba",
+          "#f3ede9"
+        ]
+      },
+      "hole-lit": {
+        "role": "tertiary",
+        "displayName": "Hole Lit",
+        "canonical": "oklch(42.8% 0.035 59.9)",
+        "tonalRamp": [
+          "#0f0a06",
+          "#2c221a",
+          "#4c3c2f",
+          "#6d594a",
+          "#8d7969",
+          "#ae9a8a",
+          "#d0c1b6",
+          "#f5ede6"
+        ]
+      },
+      "dirt": {
+        "role": "tertiary",
+        "displayName": "Dirt",
+        "canonical": "oklch(89.4% 0.037 80.6)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#2a2317",
+          "#493e2c",
+          "#695c46",
+          "#897b64",
+          "#aa9d86",
+          "#ccc3b3",
+          "#f3eee5"
+        ]
+      },
+      "hole-shadow": {
+        "role": "tertiary",
+        "displayName": "Hole Shadow",
+        "canonical": "rgba(90, 60, 30, 0.16)"
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Warm Charcoal Paper",
+        "canonical": "oklch(25.0% 0.007 67.5)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#262320",
+          "#423f3c",
+          "#605d59",
+          "#807c79",
+          "#a19e9a",
+          "#c7c3bf",
+          "#f2eee9"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Warm Light Ink",
+        "canonical": "oklch(89.1% 0.020 80.1)",
+        "tonalRamp": [
+          "#0f0a03",
+          "#292319",
+          "#453f34",
+          "#635d51",
+          "#837c70",
+          "#a59d91",
+          "#cbc3b6",
+          "#f5ede0"
+        ]
+      },
+      "ink-soft-dark": {
+        "role": "neutral",
+        "displayName": "Soft Light Ink",
+        "canonical": "oklch(79.8% 0.020 80.1)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#27231d",
+          "#453f35",
+          "#645d51",
+          "#847c70",
+          "#a59d91",
+          "#c9c3bb",
+          "#f1eee9"
+        ]
+      },
+      "ink-muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted Light Ink",
+        "canonical": "oklch(67.1% 0.020 75.2)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#28231d",
+          "#453f35",
+          "#645c51",
+          "#857c70",
+          "#a69d92",
+          "#c9c3bb",
+          "#f1eee9"
+        ]
+      },
+      "red-dark": {
+        "role": "primary",
+        "displayName": "Lifted Red",
+        "canonical": "oklch(69.1% 0.129 27.3)",
+        "tonalRamp": [
+          "#1b0303",
+          "#43100d",
+          "#6f201c",
+          "#993a33",
+          "#be5b52",
+          "#e07f74",
+          "#f7afa6",
+          "#ffe4de"
+        ]
+      },
+      "night-dark": {
+        "role": "neutral",
+        "displayName": "Quiet Night",
+        "canonical": "oklch(22.7% 0.008 274.6)",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#232428",
+          "#3e3f44",
+          "#5c5d62",
+          "#7c7d82",
+          "#9d9ea3",
+          "#c2c4c9",
+          "#edeef4"
+        ]
+      },
+      "night-ink-dark": {
+        "role": "neutral",
+        "displayName": "Night Ink (dark)",
+        "canonical": "oklch(81.0% 0.015 80.7)",
+        "tonalRamp": [
+          "#0f0a05",
+          "#28231c",
+          "#443f37",
+          "#625d54",
+          "#827c73",
+          "#a39e94",
+          "#c9c3b9",
+          "#f4eee3"
+        ]
+      },
+      "hole-deep-dark": {
+        "role": "tertiary",
+        "displayName": "Dark Hole Deep",
+        "canonical": "#000000"
+      },
+      "hole-dark-dark": {
+        "role": "tertiary",
+        "displayName": "Dark Hole Dark",
+        "canonical": "#070605"
+      },
+      "hole-wall-dark": {
+        "role": "tertiary",
+        "displayName": "Dark Hole Wall",
+        "canonical": "#15110e"
+      },
+      "hole-lip-dark": {
+        "role": "tertiary",
+        "displayName": "Hole Lip",
+        "canonical": "rgba(255, 238, 214, 0.07)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The landing headline \"I fucking hate snaps.\" only. Compact layout: clamp(3.25rem, 11vw, 7rem)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The call to action under the board. Compact layout: clamp(2.5rem, 8vw, 4.5rem)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "The closing sentence on the night band. Landing: max(23 comp px, 0.9375rem), clamp(0.875rem, 2.4vw, 1.0625rem) compact."
+      },
+      "pull": {
+        "displayName": "Pull",
+        "purpose": "The punchline on a quote page, in curly quotes; \"No opinion here.\" on the 404. Max 13em, balanced."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "The full quote in soft ink, 34em measure. Solo (no highlight): ink, clamp(1.75rem, 3.8vw, 3rem), line-height 1.3, 22em."
+      },
+      "masthead": {
+        "displayName": "Masthead",
+        "purpose": "\"I fucking hate snaps.\" at the top of reading pages, linking home."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "The ink pill label."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "\"Opinion No. N · link\" in muted ink."
+      }
+    },
+    "units": [
+      {
+        "name": "comp-px",
+        "value": "calc(min(1vw, 1.5svh) / 15.36)",
+        "purpose": "One pixel of the 1536 x 1024 comp; all desktop layout is written in it."
+      },
+      {
+        "name": "board-px",
+        "value": "calc((100vw - 2rem) / 1242)",
+        "purpose": "Compact layout only: the board fills the width minus gutters."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "hole-fill",
+        "value": "radial-gradient(ellipse 110% 130% at 50% 100%, #050403 0%, #120e0b 40%, #33281f 72%, #5e4b3c 100%)",
+        "purpose": "Light hole interior: the far wall is lit and falls into darkness toward the near rim. Holes only."
+      },
+      {
+        "name": "hole-rim-overhang",
+        "value": "inset 0 calc(-10 * var(--board-px)) calc(12 * var(--board-px)) rgba(0, 0, 0, 0.6)",
+        "purpose": "Near rim overhanging the hole."
+      },
+      {
+        "name": "hole-dirt-ring",
+        "value": "0 0 0 calc(4 * var(--board-px)) var(--dirt)",
+        "purpose": "Ring of turned-up dirt round the edge. Light only."
+      },
+      {
+        "name": "hole-ground-shadow",
+        "value": "0 calc(7 * var(--board-px)) calc(10 * var(--board-px)) calc(4 * var(--board-px)) var(--hole-shadow)",
+        "purpose": "Soft shadow on the ground under the hole: warm in light, black in dark. Light only."
+      },
+      {
+        "name": "hole-fill-dark",
+        "value": "radial-gradient(ellipse 120% 140% at 50% 0%, #000 0%, #070605 50%, #15110e 100%)",
+        "purpose": "Dark hole interior: darker than the ground everywhere, darkest under the far rim. Dark only."
+      },
+      {
+        "name": "hole-far-rim-dark",
+        "value": "inset 0 calc(12 * var(--board-px)) calc(14 * var(--board-px)) rgba(0, 0, 0, 0.75)",
+        "purpose": "The far rim's overhang in dark."
+      },
+      {
+        "name": "hole-lip-dark",
+        "value": "0 calc(2 * var(--board-px)) 0 0 rgba(255, 238, 214, 0.07)",
+        "purpose": "A faint light on the near lip in dark. No dirt ring or ground shadow in dark."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-pop",
+        "value": "cubic-bezier(0.2, 0.9, 0.3, 1.2)",
+        "purpose": "Overshoot for the squash on hit."
+      },
+      {
+        "name": "pop",
+        "value": "560ms linear, per-segment easing: 0% translate 110% scale 0.88 1.18; 38% -17% 0.92 1.1; 58% 0 1.14 0.84; 74% -6% 0.96 1.05; 87% 0 1.04 0.96; 100% rest",
+        "purpose": "Bouncy pop out of the hole, anchored at the bottom centre; restarted on each show."
+      },
+      {
+        "name": "taunt",
+        "value": "1.3s ease-in-out infinite, rotate 0 / -3deg / 3deg, starts after the pop",
+        "purpose": "Smug wobble about the bottom centre while the snap is up, which is until the mallet reaches it. Slows to 2.6s once tired."
+      },
+      {
+        "name": "duck",
+        "value": "320ms keyframes: 0% rest, ease cubic-bezier(0.3, 0.7, 0.6, 1); 25% translate -5% scale 0.96 1.05, ease cubic-bezier(0.55, 0, 0.85, 0.4); 100% translate 110% scale 1.02 0.98",
+        "purpose": "The snap ducking back into its hole; skipped on load for snaps rendered down (.rest)."
+      },
+      {
+        "name": "duration-squash",
+        "value": "260ms",
+        "purpose": "Flattened box squash on hit."
+      },
+      {
+        "name": "ouch",
+        "value": "260ms: 0% scale 1.18 0.78, cubic-bezier(0.2, 0.8, 0.4, 1); 55% translate -4% scale 0.94 1.07; 100% rest; taunt resumes after",
+        "purpose": "Flinch on hits 1 and 2."
+      },
+      {
+        "name": "flee",
+        "value": "260ms (150ms reduced motion)",
+        "purpose": "After a mouse hit on a snap that is up and not tired, it hops this soon."
+      },
+      {
+        "name": "hop-gap",
+        "value": "450ms to 650ms",
+        "purpose": "Gap between a duck and the pop from another hole."
+      },
+      {
+        "name": "dodge",
+        "value": "450ms to 750ms + effort x 160ms until back in the hole (ducks after that minus 320ms; full delay under reduced motion)",
+        "purpose": "The only thing that moves the snap: after a mouse pointer enters the up snap, it ducks and is back in the hole within this time, then comes up elsewhere. A snap that pops up under a resting mallet checks the last pointer position 220ms into its pop (0ms under reduced motion) and dodges again. Focus, a hit or hiding the page cancels it (a mouse hit then starts a flee). Touch devices never dodge."
+      },
+      {
+        "name": "touch-hop",
+        "value": "1600ms to 2600ms + effort x 300ms",
+        "purpose": "On devices without hover the snap hops by itself this often, until tired."
+      },
+      {
+        "name": "fatigue",
+        "value": "+1 per dodge, touch self-hop or mouse miss on the board; +1 per 1600ms since the first dodge; -2 and chase clock restart per hit; tired at effort 6",
+        "purpose": "The snap tires so a player who keeps missing still gets through: about 4 dodges or 9s. Tired: no dodging or fleeing, taunt slows to 2.6s."
+      },
+      {
+        "name": "hit-to-navigate",
+        "value": "650ms (300ms reduced motion)",
+        "purpose": "Delay after the third (final) hit before going to /random."
+      },
+      {
+        "name": "eye-follow",
+        "value": "90ms ease-out",
+        "purpose": "Pupil translate as the up snap's eyes follow the mouse (rAF-throttled); default glance --ex 0.6, --ey 0.3."
+      },
+      {
+        "name": "mallet-rest",
+        "value": "rotate -30deg about 88.3% 93.75% (end of handle)",
+        "purpose": "Drawn mallet at rest: head about 55px above the pointer."
+      },
+      {
+        "name": "strike",
+        "value": "170ms: -30deg, cubic-bezier(0.6, 0, 1, 0.6) to -58deg at 42%, cubic-bezier(0.2, 0.7, 0.4, 1) to -49deg at 70%, -52deg at 100%",
+        "purpose": "Mallet swing on press; at -52deg the striking face is on the pointer. Held down at least 180ms."
+      },
+      {
+        "name": "mallet-lift",
+        "value": "240ms rotate cubic-bezier(0.2, 1.5, 0.4, 1)",
+        "purpose": "Springy lift back to rest on release."
+      },
+      {
+        "name": "hit-on-press",
+        "value": "70ms (0ms reduced motion)",
+        "purpose": "A mouse hit is decided this long after pointerdown, at the current pointer position, against every snap's drawn box above its rim; a click within 1s of a mouse press is ignored. Keyboard and touch whack on click."
+      },
+      {
+        "name": "thud",
+        "value": "200ms ease-out: translate 0, 6px at 25%, -2px at 55%, 0",
+        "purpose": "The board jolts on every hit."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "instant",
+        "purpose": "The game keeps running; pop, taunt, duck, ouch, transitions, pupil easing, squash, thud, mallet strike and mallet lift are off, so the snap appears and disappears instantly and the mallet pose changes without moving."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "(max-width: 40rem), (orientation: portrait) and (max-width: 64rem)",
+        "purpose": "Landing only: holes in a triangle on an 820-unit board; board unit min((100vw - 2rem) / 820, (100svh - 25rem) / 640). Reading pages use viewport clamps, no breakpoint."
+      },
+      {
+        "name": "reading-narrow",
+        "value": "(max-width: 40rem)",
+        "purpose": "Reading pages: the actions become a two-column grid, share pill on its own line, the two action links paired below."
+      }
+    ],
+    "scope": "Every page: the landing game, the quote page and the 404 share site.css; the landing page adds its game CSS.",
+    "cursor": [
+      {
+        "name": "drawn-mallet",
+        "value": "cursor: none; img mallet.webp 180px wide, position fixed, translate from --mx/--my",
+        "purpose": "With JS and (hover: hover) and (pointer: fine): the system cursor is hidden and a drawn mallet follows the pointer; hidden (opacity 0) when the pointer leaves the window or is over the night band or within 120px of the theme picker's centre (html.near-ui, normal cursor), where a press does not swing or sound."
+      },
+      {
+        "name": "mallet-fallback",
+        "value": "image-set(mallet-128.png 1x, mallet-256.png 2x) 28 59, pointer",
+        "purpose": "Without JS, under (hover: hover) and (pointer: fine); hotspot on the striking face."
+      },
+      {
+        "name": "report-band",
+        "value": "auto",
+        "purpose": "The normal cursor over the night band."
+      },
+      {
+        "name": "report-link",
+        "value": "pointer",
+        "purpose": "The report links keep the hand pointer."
+      },
+      {
+        "name": "theme-picker",
+        "value": "pointer",
+        "purpose": "Near the theme picker (within 120px, html.near-ui) the landing page shows the normal cursor, the pointer on the button."
+      }
+    ],
+    "sound": [
+      {
+        "name": "hit",
+        "value": "triangle (260 - hits x 30) Hz to 60 Hz over 0.16s + 0.09s band-passed (1100 Hz) noise, gain 0.4",
+        "purpose": "Hits 1 and 2; pitch drops as the box gets battered. Web Audio, no files, only in answer to a click, tap or key."
+      },
+      {
+        "name": "kill",
+        "value": "170 to 42 Hz over 0.24s + 0.22s band-passed (1100 Hz) noise, gain 0.5",
+        "purpose": "The third, flattening hit."
+      },
+      {
+        "name": "miss",
+        "value": "130 to 45 Hz + 0.06s low-passed (400 Hz) noise, gain 0.25",
+        "purpose": "Dull thud when a mouse press on the board hits nothing."
+      }
+    ],
+    "game": [
+      {
+        "name": "lives",
+        "value": "3",
+        "purpose": "Hits to flatten the snap; hits 1 and 2 swap every snap to the next battered plate (snap-box-dmg1, snap-box-dmg2); hit 3 shows the flattened plate and navigates."
+      }
+    ],
+    "themes": {
+      "default": "system",
+      "light": {
+        "selector": ":root",
+        "colorScheme": "light"
+      },
+      "dark": {
+        "selector": "@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) } and :root[data-theme=\"dark\"]",
+        "colorScheme": "dark",
+        "map": {
+          "ground": "ground-dark",
+          "ink": "ink-dark",
+          "ink-soft": "ink-soft-dark",
+          "ink-muted": "ink-muted-dark",
+          "red": "red-dark",
+          "night": "night-dark",
+          "night-ink": "night-ink-dark"
+        },
+        "unchanged": [
+          "plate-ink"
+        ],
+        "description": "The lights down, not night: soft warm charcoal, never near-black.",
+        "filters": {
+          "plate-dim": "brightness(0.88) saturate(0.9)",
+          "appliedAs": "img { filter: var(--plate-dim, none) }",
+          "purpose": "Dims the drawn plates (box, mallet) into the dark scene; none in light."
+        },
+        "holes": "Own shading in dark: hole-fill-dark, hole-far-rim-dark, hole-lip-dark; no dirt ring, no ground shadow. dirt and hole-shadow are light-only tokens."
+      },
+      "picker": "Cycles system, light, dark; localStorage 'theme' holds light or dark, system removes it; an inline head script sets data-theme before paint; <meta name=\"color-scheme\" content=\"light dark\">."
+    }
+  },
+  "components": [
+    {
+      "name": "Hole",
+      "kind": "custom",
+      "refersTo": "hole-pit",
+      "description": "Shaded oval hole the snap pops from (lit far wall, rim overhang, dirt ring, ground shadow); carries the focus ring when its box is focused.",
+      "html": "<div class=\"ds-board\"><div class=\"ds-pit\"></div><div class=\"ds-pit ds-pit-mid\" tabindex=\"0\"></div><div class=\"ds-pit\"></div></div>",
+      "css": ".ds-board { display: flex; gap: 24px; align-items: flex-end; padding: 32px 24px; background: #fdf7ec; } .ds-pit { width: 140px; height: 43px; border-radius: 50%; background: radial-gradient(ellipse 110% 130% at 50% 100%, #050403 0%, #120e0b 40%, #33281f 72%, #5e4b3c 100%); box-shadow: inset 0 -4px 5px rgba(0, 0, 0, 0.6), 0 0 0 2px #e9dac1, 0 3px 4px 2px rgba(90, 60, 30, 0.16); } .ds-pit-mid { width: 158px; height: 41px; } .ds-pit:focus-visible { outline: 3px solid #2e2925; outline-offset: 6px; }"
+    },
+    {
+      "name": "Report Band",
+      "kind": "card",
+      "refersTo": "report-band",
+      "description": "The closing sentence on a full-width night band on the bottom edge of every page; its links carry a hairline underline at rest and a red one on hover.",
+      "html": "<footer class=\"ds-report\">Real opinions from real people about Ubuntu snaps. <a href=\"#\">Add your own rant</a>, or <a href=\"#\">buy me a coffee</a> and help me survive the next auto-refresh.</footer>",
+      "css": ".ds-report { margin: 0; padding: 1.15em clamp(1rem, 4vw, 3.5rem) 1.25em; background: #222a3a; color: #d9d3c8; font-family: Figtree, \"Arial Black\", sans-serif; font-weight: 400; font-size: clamp(0.875rem, 1.25vw, 1.0625rem); line-height: 1.5; text-align: left; text-wrap: pretty; cursor: auto; } .ds-report a { color: inherit; text-decoration-line: underline; text-decoration-color: color-mix(in srgb, currentColor 50%, transparent); text-decoration-thickness: 1px; text-underline-offset: 0.22em; text-decoration-skip-ink: none; cursor: pointer; } .ds-report a:hover { text-decoration-color: #d8433a; text-decoration-thickness: 1.5px; } .ds-report a:focus-visible { outline: 3px solid #d9d3c8; outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Display Headline",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Figtree 800 headline, slight negative tracking, ink on paper.",
+      "html": "<h1 class=\"ds-display\">I fucking hate snaps.</h1>",
+      "css": ".ds-display { margin: 0; padding: 24px; background: #fdf7ec; color: #2e2925; font-family: Figtree, \"Arial Black\", sans-serif; font-weight: 800; font-size: 4rem; line-height: 1; letter-spacing: -0.01em; text-wrap: balance; }"
+    },
+    {
+      "name": "Call to Action",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Figtree 800 line under the board naming the action.",
+      "html": "<p class=\"ds-cta\">Whack a snap.</p>",
+      "css": ".ds-cta { margin: 0; padding: 24px; background: #fdf7ec; color: #2e2925; font-family: Figtree, \"Arial Black\", sans-serif; font-weight: 800; font-size: 2.75rem; line-height: 1; }"
+    },
+    {
+      "name": "Ink Pill",
+      "kind": "button",
+      "refersTo": "pill",
+      "description": "The one filled control, for a page's main action: the share button on a quote page and the 404's Random opinion link.",
+      "html": "<button class=\"ds-pill\" type=\"button\">Copy link</button> <a class=\"ds-pill\" href=\"#\">Random opinion</a>",
+      "css": ".ds-pill { display: inline-block; text-decoration: none; padding: 0.85em 1.5em; border: 0; border-radius: 999px; background: #2e2925; color: #fdf7ec; font: 800 1.1875rem/1 \"Figtree\", sans-serif; cursor: pointer; } .ds-pill:hover { background: #4a433d; } .ds-pill:focus-visible { outline: 3px solid #2e2925; outline-offset: 3px; }"
+    },
+    {
+      "name": "Action Links",
+      "kind": "nav",
+      "refersTo": "link-action",
+      "description": "Add your own rant / Another opinion beside the share pill; no underline at rest, red underline on hover. Below 40rem: a two-column grid, the pill on its own line, the links paired below.",
+      "html": "<div class=\"ds-actions\"><button class=\"ds-share\" type=\"button\">Copy link</button><a href=\"#\">Add your own rant</a><a href=\"#\">Another opinion</a></div>",
+      "css": ".ds-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 1.75rem; padding: 24px; background: #fdf7ec; font-family: Figtree, \"Arial Black\", sans-serif; font-size: 1.1875rem; } .ds-actions a { color: #2e2925; text-decoration: none; } .ds-actions a:hover { text-decoration-line: underline; text-decoration-color: #d8433a; text-decoration-thickness: 1.5px; text-underline-offset: 0.22em; text-decoration-skip-ink: none; } .ds-actions a:focus-visible { outline: 3px solid #2e2925; outline-offset: 4px; border-radius: 2px; } .ds-share { padding: 0.85em 1.5em; border: 0; border-radius: 999px; background: #2e2925; color: #fdf7ec; font: 800 1.1875rem/1 \"Figtree\", sans-serif; cursor: pointer; } .ds-share:hover { background: #4a433d; } @media (max-width: 40rem) { .ds-actions { display: grid; grid-template-columns: auto auto; justify-content: center; gap: 1.1rem 1.75rem; } .ds-actions .ds-share { grid-column: 1 / -1; justify-self: center; } }"
+    },
+    {
+      "name": "Pull and Quote",
+      "kind": "custom",
+      "refersTo": "pull",
+      "description": "Punchline first: the highlight pulled out huge in quotes, the whole complaint below with the highlight marked by weight and an ink underline, then the meta line.",
+      "html": "<div class=\"ds-opinion\"><h1 class=\"ds-pull\">&#8220;Punchline from the quote&#8221;</h1><blockquote class=\"ds-quote\"><p>The whole complaint at reading size, with the <mark>punchline from the quote</mark> marked inside it.</p></blockquote><p class=\"ds-meta\">Opinion No. 7 · <span>ifuckinghatesnaps.com/7/</span></p></div>",
+      "css": ".ds-opinion { padding: 32px 16px; background: #fdf7ec; color: #2e2925; text-align: center; font-family: Figtree, \"Arial Black\", sans-serif; } .ds-pull { max-width: 13em; margin: 0 auto; font-size: clamp(2.5rem, 7.2vw, 4rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; } .ds-quote { max-width: 34em; margin: 1.75rem auto 0; color: #4a433d; font-size: 1.25rem; line-height: 1.5; } .ds-quote p { margin: 0; } .ds-quote mark { background: none; color: #2e2925; font-weight: 800; text-decoration: underline; text-decoration-thickness: 0.12em; text-underline-offset: 0.16em; text-decoration-skip-ink: none; } .ds-meta { margin: 1.1rem 0 0; color: #6b625b; font-size: 1rem; } .ds-meta span { user-select: all; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "masthead",
+      "description": "Small site name at the top of reading pages, linking home.",
+      "html": "<header class=\"ds-masthead\"><a href=\"#\">I fucking hate snaps.</a></header>",
+      "css": ".ds-masthead { padding: 1.75rem 1rem 1rem; background: #fdf7ec; text-align: center; font-family: Figtree, \"Arial Black\", sans-serif; } .ds-masthead a { color: #2e2925; font-weight: 800; font-size: clamp(1.125rem, 1.7vw, 1.5rem); text-decoration: none; } .ds-masthead a:hover { text-decoration: underline; text-decoration-color: #d8433a; text-decoration-thickness: 1.5px; text-underline-offset: 0.22em; text-decoration-skip-ink: none; } .ds-masthead a:focus-visible { outline: 3px solid #2e2925; outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Theme Picker",
+      "kind": "button",
+      "refersTo": "theme",
+      "description": "44px round icon button fixed top right on every page; cycles system, light, dark. Hidden without JS.",
+      "html": "<button class=\"ds-theme\" type=\"button\" aria-label=\"Colour theme: follows your system. Change it.\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"M12 4a8 8 0 0 1 0 16z\" fill=\"currentColor\"/></svg></button>",
+      "css": ".ds-theme { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #2e2925; cursor: pointer; } .ds-theme svg { width: 1.375rem; height: 1.375rem; } .ds-theme:hover { background: color-mix(in srgb, #2e2925 8%, transparent); } .ds-theme:focus-visible { outline: 3px solid #2e2925; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Whack-a-Mole Board",
+    "overview": "The landing page is a fairground game drawn as flat clean vector: a warm off-white ground, heavy warm-charcoal grotesque type, three dark oval holes with real depth, and a smug cardboard box labelled \"SNAP\" that pops out of them. It is not a hero with a button; the box is the primary action. Everything is soft charcoal on off-white except a muted night-blue band along the bottom edge of every page, a red underline on hovered links is the only colour, and nothing but the holes has a gradient or shadow; nothing has texture or gloss; the one worn edge in the world is the ink stamp printed on the box lid.\n\nDensity is low and the column is centred: headline, board, call to action, and one closing sentence on a full-width night band on the bottom edge, nothing else. The page never scrolls. The whole composition is drawn on a 1536 x 1024 comp and scaled as one unit, so the proportions of the approved comp hold at every desktop size. Motion belongs to the game alone: the box bounces out of its hole with a stretch and squash, wobbles smugly while it waits and only moves when the mallet reaches it, ducking back down with a little hop and dodging to another hole, follows the mallet with its eyes, flinches and gets more battered with each of its three hits, squashes flat on the last, and under reduced motion appears and disappears instantly. With a mouse, the pointer is a drawn flat wooden mallet that swings down on press, and the hit lands with a jolt of the board and a synthesised bonk.\n\nThe quote page (`/<n>/`) and the 404 live in the same world as reading pages, \"Punchline first\": a small masthead linking home, the highlighted punchline pulled out huge in quotes the way people would quote it, the whole complaint below at reading size, the permanent link in muted ink, one ink pill to copy or share it, plain links to add your own rant and to another random opinion (the previous quote is linked only as `rel=\"prev\"` in the head), and the same night footer. No game, no plates, no motion beyond the browser's own. All pages share one stylesheet (`site.css`) for fonts, palette, the page frame and the footer band; the landing page adds the game on top. Every page carries a link preview (`og.jpg`, 1200 x 630, cut from the approved landing comp), a canonical URL and the box favicon.\n\nThe world has two first-class renditions, light and dark. Dark is the same world with the lights down: soft warm charcoal paper, not near-black, warm light ink, a quiet neutral footer band, a lighter red so a hover underline still shows, and holes shaded their own way so they read as sunk, not as mounds: darker than the ground everywhere, with no dirt ring and no ground shadow. The drawn plates are dimmed slightly to sit in the dim scene; the pupils do not change. Pages follow the system preference, and a small round picker in the top-right corner lets the visitor choose system, light or dark.",
+    "keyCharacteristics": [
+      "Flat clean vector on a warm off-white ground (soft warm charcoal in dark); soft warm ink above a muted night-blue footer band (a quiet neutral in dark); contrast deliberately softened.",
+      "Light and dark are both first-class: system preference by default, the visitor's pick when made.",
+      "One red, used only as a link's hover underline.",
+      "Figtree at two weights: 800 for display lines, the punchline, the masthead and the button; 400 for reading and small text.",
+      "Oval holes with depth (in light a lit far wall falling into darkness, a dirt ring and a soft ground shadow; in dark sunk below the ground, darkest under the far rim); everything else is flat.",
+      "Two raster plates in the same flat style: the smug cardboard \"SNAP\" box and the wooden mallet.",
+      "Reading pages: punchline first, the whole quote at reading size, one ink pill for the page's main action.",
+      "Motion is the game (landing only): bouncy pop, taunting wobble, duck, dodge, eyes on the mallet, ouch, squash, mallet strike, board thud; under reduced motion the snap moves instantly and nothing bounces, wobbles, slides, squashes or jolts."
+    ],
+    "rules": [
+      {
+        "name": "The One Red Rule",
+        "body": "Red is only ever a link's hover underline; at rest the page has no red. Red on text, fills, icons, a resting underline or anything else breaks the world.",
+        "section": "colors"
+      },
+      {
+        "name": "The Black Ink Rule",
+        "body": "Every glyph is one of the inks on paper, except on the night band (night ink on night) and the ink pill (paper on ink). Emphasis comes from size, weight and an ink underline, never from colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Weights Rule",
+        "body": "Figtree 800 (display, punchline, masthead, button) and 400 (reading and small text) are the only faces. No italics, no other weights, no second family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Curly Quotes Rule",
+        "body": "Quote text is set with typographic punctuation: straight quotes are converted to “ ” ‘ ’ when the quotes load.",
+        "section": "typography"
+      },
+      {
+        "name": "The Comp Unit Rule",
+        "body": "On the landing page, desktop measurements are written in comp pixels of the 1536 x 1024 design: one comp pixel is `min(1vw, 1.5svh) / 15.36`, so the layout scales with whichever of width or height is tighter. At 1536 x 1024 the rhythm is: 48 top padding, headline, 122 to the board, board 1242 x 248, 104 to the call to action. The page never scrolls: the body is a full-height flex column, `main` takes the space the footer band leaves (48 comp px padding top and bottom) and centres the game in it, and the band sits on the bottom edge on every size.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat World Rule",
+        "body": "Only the holes are shaded. Anything else that needs to look lifted or sunk does it with overlap and clipping against flat shapes, never with shading.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Parody Stamp Rule",
+        "body": "The lid stamp is a parody folded-paper bird in worn black ink only: no circle, no text, no colour, and never the Snapcraft mark or anything that reads as it.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** keep every glyph in the warm inks on warm paper (charcoal for display and links, soft ink for reading, muted ink for meta), except on the night band, whose text is night ink; keep contrast soft, never pure black type.",
+      "**Do** size the landing page's desktop layout in comp pixels of the 1536 x 1024 design so proportions hold at every size.",
+      "**Do** give every motion a reduced-motion state where movement is instant and the interaction still works.",
+      "**Do** show focus as a 3px outline: ink at 6px offset on the snap's hole, ink at 4px offset on reading-page links (3px on the pill), night ink at 4px offset on the band.",
+      "**Do** mark a quote's highlight with weight and an ink underline, never colour alone.",
+      "**Do** keep the ink pill for a page's one main action (share on a quote page, the way on from the 404).",
+      "**Do** keep \"Add your own rant\" and the coffee link inside the one closing sentence; a coffee link is allowed there and nowhere else.",
+      "**Do** keep the provenance of every raster plate with its source file in `assets/plates/`, and carry it inside every shipped raster (PNG tEXt, JPEG comment) or, for WebP only, as a `.json` note beside it."
+    ],
+    "donts": [
+      "**Don't** use red for anything except a hovered link's underline.",
+      "**Don't** drop the resting hairline underline from links inside a sentence.",
+      "**Don't** use orange, or any Ubuntu or Snapcraft mark, logo or colour, in CSS or imagery. The cardboard tan inside the box plate is its material, not an accent to reuse.",
+      "**Don't** add gradients, shadows, gloss, riso, grain or texture outside the holes' depth treatment. The worn edge of the lid stamp is part of the box plate, not a surface treatment to reuse.",
+      "**Don't** add rays, bursts or starbursts behind the box or the type.",
+      "**Don't** put quotes on the landing page.",
+      "**Don't** add a third Figtree weight or a second typeface."
+    ]
+  }
+}

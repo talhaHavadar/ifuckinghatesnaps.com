@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "internal/site/templates/landing.html"
+        ],
+        "createdAt": "2026-11-27T16:26:12.369Z",
+        "reason": "user confirmed: approved comp r6-box-pop.png and the confirmed landing brief both specify a warm off-white ground"
+      }
+    ]
+  }
+}
